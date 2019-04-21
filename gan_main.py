@@ -49,15 +49,15 @@ parser.add_argument('--model_D', default='', type=str,
 #                     help='Plot accuracy and loss diagram?')
 parser.add_argument('-s','--save', action="store_true",
                     help='Save model?')
-#parser.add_argument('--gpu', default=0, type=int,
-#                    help='Which GPU to use?')
+parser.add_argument('--gpu', default=0, type=int,
+                    help='Which GPU to use?')
 
 def main():
     global args, date
     args = parser.parse_args()
     date = '1220'
 
-#    os.environ["CUDA_VISIBLE_DEVICES"]=str(args.gpu)
+    os.environ["CUDA_VISIBLE_DEVICES"]=str(args.gpu)
 
     model_G = ConvGen()
     model_D = ConvDis(large=args.large)
@@ -78,8 +78,8 @@ def main():
         print('No Resume')
         start_epoch = 0
 
-#    model_G.cuda()
-#    model_D.cuda()
+    model_G.cuda()
+    model_D.cuda()
 
     # optimizer
     optimizer_G = optim.Adam(model_G.parameters(),
@@ -332,8 +332,8 @@ def validate(val_loader, model_G, model_D, optimizer_G, optimizer_D, epoch):
 
         errG = errG_GAN + args.lamb * errG_L1
 
-        errorG.update(errG.data[0], target.size(0), history=1)
-        errorD.update(errD.data[0], target.size(0), history=1)
+        errorG.update(errG.data, target.size(0), history=1)
+        errorD.update(errD.data, target.size(0), history=1)
 
         if i == 0:
             vis_result(data.data, target.data, fake.data, epoch)

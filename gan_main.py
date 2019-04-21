@@ -256,17 +256,17 @@ def train(train_loader, model_G, model_D, optimizer_G, optimizer_D, epoch, itera
         optimizer_G.step()
 
         # store error values
-        errorG.update(errG.data[0], target.size(0), history=1)
-        errorD.update(errD.data[0], target.size(0), history=1)
-        errorG_basic.update(errG.data[0], target.size(0), history=1)
-        errorD_basic.update(errD.data[0], target.size(0), history=1)
-        errorD_real.update(errD_real.data[0], target.size(0), history=1)
-        errorD_fake.update(errD_fake.data[0], target.size(0), history=1)
+        errorG.update(errG.data, target.size(0), history=1)
+        errorD.update(errD.data, target.size(0), history=1)
+        errorG_basic.update(errG.data, target.size(0), history=1)
+        errorD_basic.update(errD.data, target.size(0), history=1)
+        errorD_real.update(errD_real.data, target.size(0), history=1)
+        errorD_fake.update(errD_fake.data, target.size(0), history=1)
 
-        errorD_real.update(errD_real.data[0], target.size(0), history=1)
-        errorD_fake.update(errD_fake.data[0], target.size(0), history=1)
-        errorG_GAN.update(errG_GAN.data[0], target.size(0), history=1)
-        errorG_R.update(errG_L1.data[0], target.size(0), history=1)
+        errorD_real.update(errD_real.data, target.size(0), history=1)
+        errorD_fake.update(errD_fake.data, target.size(0), history=1)
+        errorG_GAN.update(errG_GAN.data, target.size(0), history=1)
+        errorG_R.update(errG_L1.data, target.size(0), history=1)
 
 
         if iteration % print_interval == 0:

@@ -1,7 +1,5 @@
 # Image Colorization using GANs
 
-[See project report](asset/image-colorization-deep.pdf)
-
 ## Introduction
 This repository is the implementation of Conditional GANs, to convert images from greyscale to RGB.
 The input of the network is 1-channel greyscale image (specifically, the 'L' channel of LAB color space), and the Generator will create a 3-channel colorful version of the input image. 
@@ -53,31 +51,6 @@ Download from [here (Google Drive)](https://drive.google.com/file/d/1MHPz1a8aUwS
 Replace `my_path` by the root path of SC2 dataset. 
 
 Image samples created during validation will be saved in `img/`; and the model will be saved in `model/` if `-s` option is used. 
-
-### Testing
-
-* __Testing is not implemented in this version__. But you can prepare a testing dataset and run command like:
-
-`python gan_main.py my_path --dataset sc2 --test my_path --gpu 0`
-
-to test the model with unseen images. Replace `my_path` by the path of the model that was saved during the training process.
-
-## Result
-
-Some results are displayed here. A group of 3 images is put together hozizontally. The first column is greyscale image (input); the middle column is the raw image (ground truth); the third column is generated image (output). Ideally, third column should look similar with second column. All these output images are generated on testing set. 
-
-SC2Replay with 480x480 image size:
-
-![sc2](asset/SC2_large.png)
-
-SpongeBob SquarePants with 224x224 image size:
-
-![bob](asset/bob.png)
-
-OxFlower with 224x224 image size:
-
-![flower](asset/flower.png)
-
 
 
 ## Reference
